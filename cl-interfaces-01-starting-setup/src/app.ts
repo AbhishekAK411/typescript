@@ -1,16 +1,15 @@
 // Code goes here!
 class Department {
-    name: string;
+    // private name: string;
     //* The adding of the 'private' access modifier is to make sure that no one is able to execute the code -> accounting.employees[2] = 'anna';
     private employees: string[] = [];
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(private readonly id: string, private name: string) {
     }
 
     //* The this inside the describe method should always refer to an instance of the Department class.
     describe(this: Department) {
-        console.log('Department ' + this.name);
+        console.log(`Department (${this.id}): ${this.name}`);
     }
 
     addEmployee(employee: string) {
@@ -23,7 +22,7 @@ class Department {
     }
 }
 
-const accounting = new Department('Accounting');
+const accounting = new Department('D1', 'Accounting');
 
 accounting.describe();
 
