@@ -2,7 +2,7 @@
 class Department {
     // private name: string;
     //* The adding of the 'private' access modifier is to make sure that no one is able to execute the code -> accounting.employees[2] = 'anna';
-    private employees: string[] = [];
+    protected employees: string[] = [];
     //* Readonly makes sure that a certain property should only be initialized once and shouldn't change thereafter.
     constructor(private readonly id: string, private name: string) {
     }
@@ -35,6 +35,13 @@ class AccountingDepartment extends Department {
         super(id, 'accounting');
     }
 
+    addEmployee(name: string) {
+        if(name === 'Max'){
+            return;
+        }
+        this.employees.push(name);
+    }
+
     addReports(text: string){
         this.reports.push(text);
     }
@@ -62,4 +69,7 @@ const account = new AccountingDepartment('ACC1', []);
 
 account.addReports('something went wrong...');
 account.getReports();
+account.addEmployee('Max');
+account.addEmployee('Ann');
+account.printEmployeeInformation();
 
